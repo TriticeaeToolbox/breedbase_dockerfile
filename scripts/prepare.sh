@@ -11,6 +11,15 @@ SCRIPTS_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 DOCKER_DIR="$(dirname $SCRIPTS_DIR)"
 REPOS_DIR="$DOCKER_DIR/repos"
 
+# Clean and Create Repos Directory
+echo "Cloning Git Repos into $REPOS_DIR..."
+if [ -d "$REPOS_DIR" ]; then
+  read -p "Do you want to remove the existing directory? " -n 1 -r
+  echo    # (optional) move to a new line
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    rm -rf "$REPOS_DIR"
+  fi
+fi
 mkdir "$REPOS_DIR"
 
 # main code
