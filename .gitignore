@@ -33,6 +33,8 @@ vitisbase
 panandbase
 triticum
 
+scripts/.tag
+
 !Build/
 .last_cover_stats
 /META.yml
