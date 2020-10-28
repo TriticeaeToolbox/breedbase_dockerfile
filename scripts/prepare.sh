@@ -50,8 +50,11 @@ clone_repos () {
 
   # Mason website skins
   git clone https://github.com/TriticeaeToolbox/mason.git -b triticum "$REPOS_DIR"/triticum
+  git clone https://github.com/TriticeaeToolbox/mason.git -b triticum-sandbox "$REPOS_DIR"/triticum_sandbox
   git clone https://github.com/TriticeaeToolbox/mason.git -b avena "$REPOS_DIR"/avena
+  git clone https://github.com/TriticeaeToolbox/mason.git -b avena-sandbox "$REPOS_DIR"/avena_sandbox
   git clone https://github.com/TriticeaeToolbox/mason.git -b hordeum "$REPOS_DIR"/hordeum
+  git clone https://github.com/TriticeaeToolbox/mason.git -b hordeum-sandbox "$REPOS_DIR"/hordeum_sandbox
 
 }
 
