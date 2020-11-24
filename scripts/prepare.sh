@@ -32,8 +32,6 @@ clone_repos () {
   git clone https://github.com/solgenomics/Cview.git "$REPOS_DIR"/Cview
   git clone https://github.com/solgenomics/ITAG.git "$REPOS_DIR"/ITAG
   git clone https://github.com/solgenomics/tomato_genome.git "$REPOS_DIR"/tomato_genome
-  git clone https://github.com/GMOD/Chado.git "$REPOS_DIR"/Chado
-  git clone https://github.com/GMOD/chado_tools.git "$REPOS_DIR"/chado_tools
   git clone https://github.com/solgenomics/sgn-devtools.git "$REPOS_DIR"/sgn-devtools
   git clone https://github.com/solgenomics/solGS.git "$REPOS_DIR"/solGS
   git clone https://github.com/solgenomics/starmachine.git "$REPOS_DIR"/starmachine
@@ -51,10 +49,13 @@ clone_repos () {
   # Mason website skins
   git clone https://github.com/TriticeaeToolbox/mason.git -b triticum "$REPOS_DIR"/triticum
   git clone https://github.com/TriticeaeToolbox/mason.git -b triticum-sandbox "$REPOS_DIR"/triticum_sandbox
+  git clone https://github.com/TriticeaeToolbox/mason.git -b triticum-uiuc "$REPOS_DIR"/triticum_uiuc
+  git clone https://github.com/TriticeaeToolbox/mason.git -b triticum-arsks "$REPOS_DIR"/triticum_arsks
   git clone https://github.com/TriticeaeToolbox/mason.git -b avena "$REPOS_DIR"/avena
   git clone https://github.com/TriticeaeToolbox/mason.git -b avena-sandbox "$REPOS_DIR"/avena_sandbox
   git clone https://github.com/TriticeaeToolbox/mason.git -b hordeum "$REPOS_DIR"/hordeum
   git clone https://github.com/TriticeaeToolbox/mason.git -b hordeum-sandbox "$REPOS_DIR"/hordeum_sandbox
+  git clone https://github.com/TriticeaeToolbox/kelp.git "$REPOS_DIR"/kelp
 
 }
 
