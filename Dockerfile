@@ -34,18 +34,21 @@ WORKDIR /home/production/cxgn
 #
 RUN echo "deb http://lib.stat.cmu.edu/R/CRAN/bin/linux/debian stretch-cran35/" >> /etc/apt/sources.list
 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
-
 # install system dependencies
 #
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update -y --allow-unauthenticated 
 RUN apt-get upgrade -y
 RUN apt-get install build-essential pkg-config apt-utils gnupg2 curl wget -y 
+
 # key for cran-backports (not working though)
 #
 RUN bash -c "apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' 1>/key.out   2> /key.err"
 
+# add postgresl repo and key
+#
+RUN apt-get install -y lsb-release
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc |  apt-key add -
 
 #RUN apt-get update --fix-missing -y
