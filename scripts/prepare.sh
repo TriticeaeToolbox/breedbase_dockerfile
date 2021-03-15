@@ -39,8 +39,6 @@ clone_repos () {
   git clone https://github.com/GMOD/chado_tools "$REPOS_DIR"/chado_tools
   git clone https://github.com/GMOD/Bio-Chado-Schema "$REPOS_DIR"/Bio-Chado-Schema
   git clone https://github.com/solgenomics/DroneImageScripts.git "$REPOS_DIR"/DroneImageScripts
-  git clone --branch 4.1.0 --depth 1 https://github.com/opencv/opencv "$REPOS_DIR"/opencv
-  git clone --branch 4.1.0 --depth 1 https://github.com/opencv/opencv_contrib "$REPOS_DIR"/opencv_contrib
 
   # local libs
   git clone https://github.com/solgenomics/perl-local-lib "$REPOS_DIR"/local-lib
