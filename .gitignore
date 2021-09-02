@@ -36,3 +36,6 @@ inc/
 /MANIFEST.bak
 /pm_to_blib
 /*.zip
+
+# Docker Image Tag
+scripts/.tag
