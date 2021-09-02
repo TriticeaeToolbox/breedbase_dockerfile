@@ -1,0 +1,90 @@
+[submodule "cxgn/cxgn-corelibs"]
+	path = cxgn/cxgn-corelibs
+	url = https://github.com/solgenomics/cxgn-corelibs.git
+[submodule "cxgn/sgn"]
+	path = cxgn/sgn
+	url = https://github.com/TriticeaeToolbox/sgn.git
+	branch = t3/master
+[submodule "cxgn/Phenome"]
+	path = cxgn/Phenome
+	url = https://github.com/solgenomics/Phenome.git
+[submodule "cxgn/rPackages"]
+	path = cxgn/rPackages
+	url = https://github.com/solgenomics/rPackages.git
+[submodule "cxgn/biosource"]
+	path = cxgn/biosource
+	url = https://github.com/solgenomics/biosource.git
+[submodule "cxgn/Cview"]
+	path = cxgn/Cview
+	url = https://github.com/solgenomics/Cview.git
+[submodule "cxgn/ITAG"]
+	path = cxgn/ITAG
+	url = https://github.com/solgenomics/ITAG.git
+[submodule "cxgn/tomato_genome"]
+	path = cxgn/tomato_genome
+	url = https://github.com/solgenomics/tomato_genome.git
+[submodule "cxgn/sgn-devtools"]
+	path = cxgn/sgn-devtools
+	url = https://github.com/solgenomics/sgn-devtools.git
+[submodule "cxgn/solGS"]
+	path = cxgn/solGS
+	url = https://github.com/solgenomics/solGS.git
+[submodule "cxgn/starmachine"]
+	path = cxgn/starmachine
+	url = https://github.com/solgenomics/starmachine.git
+[submodule "cxgn/Chado"]
+	path = cxgn/Chado
+	url = https://github.com/GMOD/Chado
+[submodule "cxgn/chado_tools"]
+	path = cxgn/chado_tools
+	url = https://github.com/GMOD/chado_tools
+[submodule "cxgn/Bio-Chado-Schema"]
+	path = cxgn/Bio-Chado-Schema
+	url = https://github.com/GMOD/Bio-Chado-Schema
+[submodule "cxgn/DroneImageScripts"]
+	path = cxgn/DroneImageScripts
+	url = https://github.com/solgenomics/DroneImageScripts.git
+[submodule "cxgn/local-lib"]
+	path = cxgn/local-lib
+	url = https://github.com/solgenomics/perl-local-lib
+[submodule "cxgn/R_libs"]
+	path = cxgn/R_libs
+	url = https://github.com/solgenomics/R_libs
+[submodule "cxgn/triticum"]
+	path = cxgn/triticum
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = triticum
+[submodule "cxgn/triticum_sandbox"]
+	path = cxgn/triticum_sandbox
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = triticum-sandbox
+[submodule "cxgn/triticum_uiuc"]
+	path = cxgn/triticum_uiuc
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = triticum-uiuc
+[submodule "cxgn/triticum_arsks"]
+	path = cxgn/triticum_arsks
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = triticum-arsks
+[submodule "cxgn/avena"]
+	path = cxgn/avena
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = avena
+[submodule "cxgn/avena_sandbox"]
+	path = cxgn/avena_sandbox
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = avena-sandbox
+[submodule "cxgn/hordeum"]
+	path = cxgn/hordeum
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = hordeum
+[submodule "cxgn/hordeum_sandbox"]
+	path = cxgn/hordeum_sandbox
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = hordeum-sandbox
+[submodule "cxgn/kelp"]
+	path = cxgn/kelp
+	url = https://github.com/TriticeaeToolbox/kelp.git
+[submodule "cxgn/tassel-5-standalone"]
+	path = cxgn/tassel-5-standalone
+	url = https://bitbucket.com/tasseladmin/tassel-5-standalone
