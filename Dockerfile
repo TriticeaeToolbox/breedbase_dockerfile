@@ -117,7 +117,6 @@ RUN bash /install_node.sh
 
 COPY slurm.conf /etc/slurm-llnl/slurm.conf
 
-COPY sgn_local.conf /home/production/cxgn/sgn/sgn_local.conf
 COPY starmachine.conf /etc/starmachine/
 COPY slurm.conf /etc/slurm-llnl/slurm.conf
 
@@ -147,15 +146,16 @@ ARG CREATED
 ARG REVISION
 ARG BUILD_VERSION
 
-LABEL maintainer="lam87@cornell.edu"
+LABEL maintainer="djw64@cornell.edu"
+LABEL org.opencontainers.image.authors="Breedbase - https://github.com/solgenomics/sgn, The Triticeae Toolbox - https://github.com/TriticeaeToolbox/sgn"
 LABEL org.opencontainers.image.created=$CREATED
-LABEL org.opencontainers.image.url="https://breedbase.org/"
-LABEL org.opencontainers.image.source="https://github.com/solgenomics/breedbase_dockerfile"
+LABEL org.opencontainers.image.url="https://hub.docker.com/r/triticeaetoolbox/breedbase_web"
+LABEL org.opencontainers.image.source="https://github.com/TriticeaeToolbox/breedbase_dockerfile"
 LABEL org.opencontainers.image.version=$BUILD_VERSION
 LABEL org.opencontainers.image.revision=$REVISION
-LABEL org.opencontainers.image.vendor="Boyce Thompson Institute"
-LABEL org.opencontainers.image.title="breedbase/breedbase"
-LABEL org.opencontainers.image.description="Breedbase web server"
+LABEL org.opencontainers.image.vendor="The Triticeae Toolbox"
+LABEL org.opencontainers.image.title="T3/Breedbase"
+LABEL org.opencontainers.image.description="The web server for T3/Breedbase"
 LABEL org.opencontainers.image.documentation="https://solgenomics.github.io/sgn/"
 
 # start services when running container...

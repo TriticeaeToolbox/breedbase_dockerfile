@@ -37,5 +37,5 @@ fi
 
 # Build the Image
 echo "===> building docker image"
-docker build -t triticeaetoolbox/breedbase_web:$T3_BB_TAG .
+docker build --build-arg CREATED=$(date +"%Y-%m-%dT%H:%M:%S%z") --build-arg BUILD_VERSION=$T3_BB_TAG --build-arg REVISION=$(git submodule status cxgn/sgn | cut -d ' ' -f 2) -t triticeaetoolbox/breedbase_web:$T3_BB_TAG .
 docker tag triticeaetoolbox/breedbase_web:$T3_BB_TAG triticeaetoolbox/breedbase_web:latest
