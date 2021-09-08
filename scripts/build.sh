@@ -37,9 +37,7 @@ fi
 
 # Set build info
 T3_BB_CREATED=$(date +"%Y-%m-%dT%H:%M:%S%z")
-SGN_TAG=$(git --git-dir ./cxgn/sgn/.git describe --abbrev=0 --tags)
 SGN_COMMIT=$(git --git-dir ./cxgn/sgn/.git rev-parse --short HEAD)
-SGN_UPDATED=$(git --git-dir ./cxgn/sgn/.git log -1 --format=%cd)
 
 # Build the Image
 echo "===> building docker image"
@@ -47,8 +45,5 @@ docker build \
     --build-arg CREATED="$T3_BB_CREATED" \
     --build-arg REVISION="$SGN_COMMIT" \
     --build-arg BUILD_VERSION="$T3_BB_TAG" \
-    --build-arg SGN_TAG="$SGN_TAG" \
-    --build-arg SGN_COMMIT="$SGN_COMMIT" \
-    --build-arg SGN_UPDATED="$SGN_UPDATED" \
     -t triticeaetoolbox/breedbase_web:$T3_BB_TAG .
 docker tag triticeaetoolbox/breedbase_web:$T3_BB_TAG triticeaetoolbox/breedbase_web:latest

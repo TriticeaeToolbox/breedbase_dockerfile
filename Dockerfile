@@ -127,6 +127,8 @@ RUN chmod +x /entrypoint.sh
 # This also adds the Mason website skins
 #
 ADD cxgn /home/production/cxgn
+RUN mkdir /home/production/.git
+COPY .git /home/production/.git
 
 WORKDIR /home/production/cxgn/sgn
 
@@ -157,16 +159,6 @@ LABEL org.opencontainers.image.vendor="The Triticeae Toolbox"
 LABEL org.opencontainers.image.title="T3/Breedbase"
 LABEL org.opencontainers.image.description="The web server for T3/Breedbase"
 LABEL org.opencontainers.image.documentation="https://solgenomics.github.io/sgn/"
-
-# Write SGN build info to file
-ARG SGN_TAG
-ARG SGN_COMMIT
-ARG SGN_UPDATED
-
-RUN echo "SGN_TAG=$SGN_TAG\n\
-SGN_COMMIT=$SGN_COMMIT\n\
-SGN_UPDATED=$SGN_UPDATED"\
-> "/home/production/.sgn_build_info"
 
 # start services when running container...
 ENTRYPOINT ["/entrypoint.sh"]
