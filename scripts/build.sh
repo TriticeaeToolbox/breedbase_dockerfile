@@ -41,7 +41,7 @@ SGN_COMMIT=$(git --git-dir ./cxgn/sgn/.git rev-parse --short HEAD)
 
 # Build the Image
 echo "===> building docker image"
-docker build \
+DOCKER_BUILDKIT=1 docker build \
     --build-arg CREATED="$T3_BB_CREATED" \
     --build-arg REVISION="$SGN_COMMIT" \
     --build-arg BUILD_VERSION="$T3_BB_TAG" \
