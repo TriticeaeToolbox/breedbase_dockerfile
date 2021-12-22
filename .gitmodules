@@ -88,3 +88,7 @@
 [submodule "cxgn/tassel-5-standalone"]
 	path = cxgn/tassel-5-standalone
 	url = https://bitbucket.com/tasseladmin/tassel-5-standalone
+[submodule "cxgn/triticum_cap"]
+	path = cxgn/triticum_cap
+	url = https://github.com/TriticeaeToolbox/mason.git
+	branch = triticum-cap
