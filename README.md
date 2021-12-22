@@ -18,6 +18,32 @@ The main differences between this T3 version of Breedbase and the original Breed
 
 ## Build Instructions
 
+### Update Repositories
+
+Before building the new Docker image, make sure the `t3/master` branch of the `TriticeaeToolbox/sgn` repo and all of the instance branches (`triticum`, `triticum-sandbox`, `avena`, etc) of the `TriticeaeToolbox/mason` repo are updated with the latest changes that are to be included in the new Docker image build.
+
+For example, to update the `t3/master` branch of the `TriticeaeToolbox/sgn` repo with changes from the upstream `solgenomics/sgn` repo using a specific tag:
+
+```bash
+djw64:sgn ● t3/master:✓ $ git remote -v
+origin  git@github.com:TriticeaeToolbox/sgn.git (fetch)
+origin  git@github.com:TriticeaeToolbox/sgn.git (push)
+sgn     git@github.com:solgenomics/sgn.git (fetch)
+sgn     git@github.com:solgenomics/sgn.git (push)
+djw64:sgn ● t3/master:✓ $ git fetch origin
+djw64:sgn ● t3/master:✓ $ git checkout t3/master
+djw64:sgn ● t3/master:✓ $ git pull
+djw64:sgn ● t3/master:✓ $ git fetch sgn
+djw64:sgn ● t3/master:✓ $ git merge sgn-309.0
+# Fix file conflicts and commit the changes here, if necessary
+# Test the code for any major issues
+djw64:sgn ● t3/master:✓ $ git push
+```
+
+### Build Docker Image
+
+On TCAP, the build repository is located at `/opt/breedbase-dev/breedbase_dockerfile/`
+
 To build the image using Docker, use the `./scripts/build.sh` script:
 
 ```sh
@@ -32,3 +58,21 @@ This script will:
   - if this flag is not provided, the submodules will be locked to the commits that were used the last time this repo was updated
 - build the T3/Breedbase Docker image
 - tag the newly built image with the `latest` and `YYYYMMDD` tags
+
+### Deploy Docker Image
+
+To deploy the image to Docker Hub, first make sure you are logged in using your Docker account (`docker login`).
+
+Then, run the deploy script to push the image to docker hub using the `YYYYMMDD` and `latest` tags.
+
+```sh
+./scripts/deploy.sh
+```
+
+### Update Instances
+
+Once the images have been deployed to Docker Hub, use the `breedbase` script to pull the new images and run the update scripts (run database patches, update trait ontologies, etc) on each server (TCAP, TCAPG, and TCAPS).
+
+```sh
+breedbase update
+```

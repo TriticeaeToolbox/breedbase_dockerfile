@@ -98,7 +98,7 @@ RUN apt-get install libmoosex-runnable-perl -y
 RUN apt-get install libgdbm3 libgdm-dev -y
 RUN apt-get install nodejs -y
 
-RUN cpanm Selenium::Remote::Driver@1.44
+RUN cpanm Selenium::Remote::Driver@1.45
 
 #INSTALL OPENCV IMAGING LIBRARY
 RUN apt-get install -y python3-dev python-pip python3-pip python-numpy libgtk2.0-dev libgtk-3-0 libgtk-3-dev libavcodec-dev libavformat-dev libswscale-dev libhdf5-serial-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libxvidcore-dev libatlas-base-dev gfortran libgdal-dev exiftool libzbar-dev cmake
@@ -122,6 +122,16 @@ COPY slurm.conf /etc/slurm-llnl/slurm.conf
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+# build htslib (tabix) for T3 download-vcf.pl script
+# 
+WORKDIR /htslib
+RUN git clone https://github.com/samtools/htslib .
+RUN git submodule update --init --recursive
+RUN make
+RUN make install
+WORKDIR /home/production/cxgn
+RUN rm -rf /htslib
 
 # copy code repos.
 # This also adds the Mason website skins
