@@ -85,6 +85,3 @@
 [submodule "cxgn/kelp"]
 	path = cxgn/kelp
 	url = https://github.com/TriticeaeToolbox/kelp.git
-[submodule "cxgn/tassel-5-standalone"]
-	path = cxgn/tassel-5-standalone
-	url = https://bitbucket.com/tasseladmin/tassel-5-standalone
