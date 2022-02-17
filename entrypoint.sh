@@ -21,6 +21,7 @@ export="/home/production/export"
 export_prod="/home/production/export/prod"
 tmp_run="/tmp/cxgn_tools_run"
 
+mkdir -p "$tmp"
 chown www-data:www-data "$tmp/../"
 mkdir -p "$tmp/mason/obj"; chown -R www-data:www-data "$tmp/mason"
 chown -R www-data:www-data "$archive"
