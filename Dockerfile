@@ -28,6 +28,10 @@ RUN mkdir /var/log/sgn
 
 WORKDIR /home/production/cxgn
 
+# change archive and security repos to old-releases...
+#
+RUN sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+
 # add cran backports repo and required deps
 #
 RUN echo "deb http://lib.stat.cmu.edu/R/CRAN/bin/linux/debian stretch-cran35/" >> /etc/apt/sources.list
