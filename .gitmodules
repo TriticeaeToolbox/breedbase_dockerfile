@@ -4,7 +4,7 @@
 [submodule "cxgn/sgn"]
 	path = cxgn/sgn
 	url = https://github.com/TriticeaeToolbox/sgn.git
-	branch = t3/master
+	branch = t3/debian11
 [submodule "cxgn/Phenome"]
 	path = cxgn/Phenome
 	url = https://github.com/solgenomics/Phenome.git
@@ -47,9 +47,14 @@
 [submodule "cxgn/local-lib"]
 	path = cxgn/local-lib
 	url = https://github.com/solgenomics/perl-local-lib
+	branch = topic/debian_bullseye
 [submodule "cxgn/R_libs"]
 	path = cxgn/R_libs
 	url = https://github.com/solgenomics/R_libs
+	branch = topic/debian_bullseye_R4.1.2
+[submodule "cxgn/QuantGenResources"]
+	path = cxgn/QuantGenResources
+	url = https://github.com/solgenomics/QuantGenResources.git
 [submodule "cxgn/triticum"]
 	path = cxgn/triticum
 	url = https://github.com/TriticeaeToolbox/mason.git
