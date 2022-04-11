@@ -1,5 +1,5 @@
 #!/bin/bash
-sed -i s/localhost/$HOSTNAME/g /etc/slurm-llnl/slurm.conf
+sed -i s/localhost/$HOSTNAME/g /etc/slurm/slurm.conf
 /etc/init.d/postfix start
 /etc/init.d/cron start
 /etc/init.d/munge start
