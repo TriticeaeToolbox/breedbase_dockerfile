@@ -10,13 +10,15 @@ cd $(git rev-parse --show-toplevel)
 T3_BB_TAG=$(date "+%Y%m%d")
 echo "$T3_BB_TAG" > "$SCRIPTS_DIR/.tag"
 
-# Pull the submodules
-echo "===> pulling the submodules"
-git submodule sync                          # sync the .gitmodules definitions with local git config
-git submodule update --init --recursive     # make sure we have pulled the repos with committed versions
-
 # Merge changes to submodules, if requested
 if [[ "$1" == "--update" ]]; then
+
+    # Pull the submodules
+    echo "===> pulling the submodules"
+    git submodule sync                          # sync the .gitmodules definitions with local git config
+    git submodule update --init --recursive     # make sure we have pulled the repos with committed versions
+
+    # Update the submodules
     echo "===> updating the submodules"
     git submodule update --remote --merge   # merge new commits into the submodules
 
@@ -33,6 +35,7 @@ if [[ "$1" == "--update" ]]; then
     else
         echo "===> no submodules updated"
     fi
+
 fi
 
 # Set build info
