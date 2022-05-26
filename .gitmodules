@@ -4,7 +4,7 @@
 [submodule "cxgn/sgn"]
 	path = cxgn/sgn
 	url = https://github.com/TriticeaeToolbox/sgn.git
-	branch = t3/debian11
+	branch = t3/master
 [submodule "cxgn/Phenome"]
 	path = cxgn/Phenome
 	url = https://github.com/solgenomics/Phenome.git
