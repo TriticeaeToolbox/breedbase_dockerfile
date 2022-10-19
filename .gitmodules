@@ -32,9 +32,6 @@
 [submodule "cxgn/starmachine"]
 	path = cxgn/starmachine
 	url = https://github.com/solgenomics/starmachine.git
-[submodule "cxgn/Chado"]
-	path = cxgn/Chado
-	url = https://github.com/GMOD/Chado
 [submodule "cxgn/chado_tools"]
 	path = cxgn/chado_tools
 	url = https://github.com/GMOD/chado_tools
