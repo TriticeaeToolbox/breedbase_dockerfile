@@ -48,7 +48,7 @@
 [submodule "cxgn/R_libs"]
 	path = cxgn/R_libs
 	url = https://github.com/solgenomics/R_libs
-	branch = topic/debian_bullseye_R4.1.2
+	branch = topic/debian_bullseye_R4.2
 [submodule "cxgn/QuantGenResources"]
 	path = cxgn/QuantGenResources
 	url = https://github.com/solgenomics/QuantGenResources.git
