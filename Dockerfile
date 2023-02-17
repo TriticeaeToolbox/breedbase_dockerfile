@@ -66,6 +66,10 @@ RUN chmod 777 /var/spool/ \
     && ln -s /var/lib/slurm-llnl /var/lib/slurm \
     && mkdir -p /var/log/slurm
 
+# add www-data to postdrop group so slurm jobs can send emails
+#
+RUN usermod -a -G postdrop www-data
+
 RUN apt-get install r-base r-base-dev -y --allow-unauthenticated
 
 # required for R-package spdep, and other dependencies of agricolae
