@@ -152,7 +152,7 @@ RUN chmod +x /entrypoint.sh
 WORKDIR /home/production/cxgn/sgn
 
 # Clean the git repo
-RUN git gc
+RUN git config --global --add safe.directory /home/production/cxgn/sgn && git gc
 
 ENV PERL5LIB=/home/production/cxgn/Bio-Chado-Schema/lib:/home/production/cxgn/local-lib/:/home/production/cxgn/local-lib/lib/perl5:/home/production/cxgn/sgn/lib:/home/production/cxgn/cxgn-corelibs/lib:/home/production/cxgn/Phenome/lib:/home/production/cxgn/Cview/lib:/home/production/cxgn/ITAG/lib:/home/production/cxgn/biosource/lib:/home/production/cxgn/tomato_genome/lib:/home/production/cxgn/chado_tools/chado/lib:.
 
