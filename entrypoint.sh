@@ -31,8 +31,9 @@ mkdir -p "$export"; chown -R www-data:www-data "$export"; ln -snf "$export" /exp
 mkdir -p "$export_prod"; chown -R www-data:www-data "$export_prod"
 mkdir -p "$tmp_run"; chown www-data:www-data "$tmp_run"
 
-# Fix git permissions
-git config --global --add safe.directory /home/production/cxgn/sgn
+# Set git version info in sgn repo
+git config --global --add safe.directory '*'
+/usr/local/bin/set_git_version_info
 
 if [ "$MODE" == "DEVELOPMENT" ]; then
     /home/production/cxgn/sgn/bin/sgn_server.pl --fork -r -d -p 8080

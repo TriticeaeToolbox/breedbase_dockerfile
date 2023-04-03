@@ -116,6 +116,7 @@ RUN pip3 install grpcio==1.40.0 imutils numpy matplotlib pillow statistics PyExi
 COPY tools/gcta/gcta64  /usr/local/bin/
 COPY tools/quicktree /usr/local/bin/
 COPY tools/sreformat /usr/local/bin/
+COPY tools/set_git_version_info /usr/local/bin/
 COPY tools/DiGGer_1.0.5_R_x86_64-redhat-linux-gnu.tar.gz /home/production/DiGGer.tar.gz
 
 # Install DiGGer from the source code
