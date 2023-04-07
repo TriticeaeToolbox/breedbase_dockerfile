@@ -38,6 +38,9 @@ djw64:sgn ● t3/master:✓ $ git merge sgn-309.0
 # Fix file conflicts and commit the changes here, if necessary
 # Test the code for any major issues
 djw64:sgn ● t3/master:✓ $ git push
+# !! Remember to push the tags as well, if you want the latest 
+# tag to be displayed in the footer of the website
+djw64:sgn ● t3/master:✓ $ git push --tags
 ```
 
 ### Build Docker Image
