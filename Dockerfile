@@ -103,7 +103,7 @@ RUN apt-get install libmoosex-runnable-perl -y
 RUN apt-get install libgdbm6 libgdm-dev -y
 RUN apt-get install nodejs -y
 
-RUN cpanm Selenium::Remote::Driver@1.44
+RUN cpanm Selenium::Remote::Driver@1.44 Sort::Naturally
 
 #INSTALL OPENCV IMAGING LIBRARY
 RUN apt-get install -y python3-dev  python3-pip python3-numpy libgtk2.0-dev libgtk-3-0 libgtk-3-dev libavcodec-dev libavformat-dev libswscale-dev libhdf5-serial-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libxvidcore-dev libatlas-base-dev gfortran libgdal-dev exiftool libzbar-dev cmake
