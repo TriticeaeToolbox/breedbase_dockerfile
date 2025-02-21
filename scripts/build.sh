@@ -1,52 +1,54 @@
 #! /usr/bin/env bash
 
-SUBMODULE_DIR="cxgn/"
-SCRIPTS_DIR="scripts/"
-
 # Change to root directory of git repo
 cd $(git rev-parse --show-toplevel)
 
-# Set the Image Tag
-T3_BB_TAG=$(date "+%Y%m%d")
-echo "$T3_BB_TAG" > "$SCRIPTS_DIR/.tag"
+#
+# Set the SGN repo, branch, and commit to use
+# SGN_REPO = user/repo of the sgn repository to build (default: TriticeaeToolbox/sgn)
+# SGN_BRANCH = name of the sgn repo branch to build (default: t3/master)
+#
+# All of these can be overriden with environment variables, if desired
+# 
+SGN_REPO="${SGN_REPO:-TriticeaeToolbox/sgn}"
+SGN_BRANCH="${SGN_BRANCH:-t3/master}"
+SGN_COMMIT=${SGN_COMMIT:-$(curl --silent https://api.github.com/repos/$SGN_REPO/branches/$SGN_BRANCH | jq -r '.commit.sha')}
 
-# Merge changes to submodules, if requested
-if [[ "$1" == "--update" ]]; then
+#
+# Set the Docker image and tag to use
+# DOCKER_IMAGE = user and image to use as the image name (default: triticeaetoolbox/breedbase_web)
+# DOCKER_TAG = the tag to use for the new image (default: YYYYMMDD)
+# DOCKER_CHANNEL = the release channel for the new image (default: latest)
+#
+# All of these can be overriden with environment variables, if desired
+#
+DOCKER_IMAGE="${DOCKER_IMAGE:-triticeaetoolbox/breedbase_web}"
+DOCKER_TAG="${DOCKER_TAG:-$(date "+%Y%m%d")}"
+DOCKER_CHANNEL="${DOCKER_CHANNEL:-latest}"
+DOCKER_CREATED=$(date +"%Y-%m-%dT%H:%M:%S%z")
 
-    # Pull the submodules
-    echo "===> pulling the submodules"
-    git submodule sync                          # sync the .gitmodules definitions with local git config
-    git submodule update --init --recursive     # make sure we have pulled the repos with committed versions
 
-    # Update the submodules
-    echo "===> updating the submodules"
-    git submodule update --remote --merge   # merge new commits into the submodules
+echo "===> BUILDING DOCKER IMAGE..."
+echo "SGN REPO: $SGN_REPO"
+echo "SGN BRANCH: $SGN_BRANCH"
+echo "SGN COMMIT: $SGN_COMMIT"
+echo "DOCKER IMAGE: $DOCKER_IMAGE"
+echo "DOCKER TAG: $DOCKER_TAG"
+echo "DOCKER CHANNEL: $DOCKER_CHANNEL"
+echo "DOCKER CREATED: $DOCKER_CREATED"
 
-    # Check for updates
-    updated_dirs=$(git diff --name-only HEAD -- "$SUBMODULE_DIR")
-    if [[ ! -z "$updated_dirs" ]]; then
-
-        # Commit the updated submodules
-        echo "===> submodules updated -- committing"
-        updated_dirs=$(echo "$updated_dirs" | paste -sd ", " -)
-        git add "$SUBMODULE_DIR"
-        git commit -m "Updated submodules: $updated_dirs"
-
-    else
-        echo "===> no submodules updated"
-    fi
-
-fi
-
-# Set build info
-T3_BB_CREATED=$(date +"%Y-%m-%dT%H:%M:%S%z")
-SGN_COMMIT=$(git --git-dir ./cxgn/sgn/.git rev-parse --short HEAD)
 
 # Build the Image
-echo "===> building docker image"
 DOCKER_BUILDKIT=1 docker build \
-    --build-arg CREATED="$T3_BB_CREATED" \
-    --build-arg REVISION="$SGN_COMMIT" \
-    --build-arg BUILD_VERSION="$T3_BB_TAG" \
-    -t triticeaetoolbox/breedbase_web:$T3_BB_TAG .
-docker tag triticeaetoolbox/breedbase_web:$T3_BB_TAG triticeaetoolbox/breedbase_web:latest
+    --build-arg DOCKER_TAG="$DOCKER_TAG" \
+    --build-arg DOCKER_CREATED="$DOCKER_CREATED" \
+    --build-arg SGN_REPO="$SGN_REPO" \
+    --build-arg SGN_BRANCH="$SGN_BRANCH" \
+    --build-arg SGN_COMMIT="$SGN_COMMIT" \
+    -t $DOCKER_IMAGE:$DOCKER_TAG .
+docker tag $DOCKER_IMAGE:$DOCKER_TAG $DOCKER_IMAGE:$DOCKER_CHANNEL
+
+# Deploy the Image, if requested with --deploy
+if [[ "$1" == "--deploy" ]]; then
+    DOCKER_IMAGE="$DOCKER_IMAGE" DOCKER_TAG="$DOCKER_TAG" DOCKER_CHANNEL="$DOCKER_CHANNEL" bash ./scripts/deploy.sh
+fi

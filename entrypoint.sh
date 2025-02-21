@@ -30,9 +30,9 @@ mkdir -p "$static_content/folder"; chown -R www-data:www-data "$static_content/f
 mkdir -p "$export"; chown -R www-data:www-data "$export"; ln -snf "$export" /export
 mkdir -p "$export_prod"; chown -R www-data:www-data "$export_prod"
 mkdir -p "$tmp_run"; chown www-data:www-data "$tmp_run"
+chown production:production "/home/production/cxgn/sgn/js/package.json"
 
 # Set git version info in sgn repo
-git config --global --add safe.directory '*'
 /usr/local/bin/set_git_version_info
 
 if [ "$MODE" == "DEVELOPMENT" ]; then

@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
-git -C /home/production/cxgn/sgn describe --abbrev=0 --tags > /home/production/cxgn/sgn/.git_tag
-git -C /home/production/cxgn/sgn rev-parse --short HEAD > /home/production/cxgn/sgn/.git_commit
-git -C /home/production/cxgn/sgn log -1 --format=%cd > /home/production/cxgn/sgn/.git_updated
+git config --global --add safe.directory /home/production/cxgn/sgn
+git -C /home/production/cxgn/sgn describe --abbrev=0 --tags > /home/production/tmp/git_tag
+git -C /home/production/cxgn/sgn rev-parse --short HEAD > /home/production/tmp/git_commit
+git -C /home/production/cxgn/sgn log -1 --format=%cd > /home/production/tmp/git_updated
