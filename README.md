@@ -45,31 +45,41 @@ djw64:sgn ● t3/master:✓ $ git push --tags
 
 ### Build Docker Image
 
-On TCAP, the build repository is located at `/opt/breedbase-dev/breedbase_dockerfile/`
-
-To build the image using Docker, use the `./scripts/build.sh` script:
+To build a new docker image, use the `./scripts/build.sh` script:
 
 ```sh
-./scripts/build.sh --update
+./scripts/build.sh
 ```
 
 This script will:
 
-- initialize the submodules
-- if the `--update` flag is provided:
-  - pull in the most recent commits to all of the submodules
-  - if this flag is not provided, the submodules will be locked to the commits that were used the last time this repo was updated
-- build the T3/Breedbase Docker image
+- rebuild the Docker image using the latest version of all of the GitHub repositories
 - tag the newly built image with the `latest` and `YYYYMMDD` tags
+
+By default, this script will use the `t3/master` branch of the `TriticeaeToolbox/sgn` SGN repository.
+
+To change the SGN repository or branch that the image will use, set the `SGN_REPO` and `SGN_BRANCH` environment
+variables before running the build script:
+
+```sh
+SGN_REPO=solgenomics/sgn SGN_BRANCH=master ./scripts/build.sh
+```
+
+You can also specify the Docker image tags using the following environment variables:
+
+- `DOCKER_TAG`: defaults to `YYYYMMDD` as the image tag
+- `DOCKER_CHANNEL`: defaults to `latest` release channel
+
+If you want to deploy the image right after building it, you can add the `--deploy` flag to the build script.
 
 ### Deploy Docker Image
 
 To deploy the image to Docker Hub, first make sure you are logged in using your Docker account (`docker login`).
 
-Then, run the deploy script to push the image to docker hub using the `YYYYMMDD` and `latest` tags.
+Then, run the deploy script to push specified tags of the image (triticeaetoolbox/breedbase_web by default) to Docker Hub.
 
 ```sh
-./scripts/deploy.sh
+./scripts/deploy.sh YYYYMMDD latest
 ```
 
 ### Update Instances
