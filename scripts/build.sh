@@ -12,7 +12,7 @@ cd $(git rev-parse --show-toplevel)
 # 
 SGN_REPO="${SGN_REPO:-TriticeaeToolbox/sgn}"
 SGN_BRANCH="${SGN_BRANCH:-t3/master}"
-SGN_COMMIT=${SGN_COMMIT:-$(curl --silent https://api.github.com/repos/$SGN_REPO/branches/$SGN_BRANCH | jq -r '.commit.sha')}
+SGN_COMMIT=$(curl --silent https://api.github.com/repos/$SGN_REPO/branches/$SGN_BRANCH | jq -r '.commit.sha')
 
 #
 # Set the Docker image and tag to use

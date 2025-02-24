@@ -1,18 +1,8 @@
 FROM debian:bullseye
 
-ARG DOCKER_TAG
-ARG DOCKER_CREATED
 ARG SGN_REPO
 ARG SGN_BRANCH
 ARG SGN_COMMIT
-
-ENV CPANMIRROR=http://cpan.cpantesters.org
-ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8
-ENV PERL5LIB=/home/production/cxgn/Bio-Chado-Schema/lib:/home/production/cxgn/local-lib/:/home/production/cxgn/local-lib/lib/perl5:/home/production/cxgn/sgn/lib:/home/production/cxgn/cxgn-corelibs/lib:/home/production/cxgn/Phenome/lib:/home/production/cxgn/Cview/lib:/home/production/cxgn/ITAG/lib:/home/production/cxgn/biosource/lib:/home/production/cxgn/tomato_genome/lib:/home/production/cxgn/chado_tools/chado/lib:.
-ENV HOME=/home/production
-ENV PGPASSFILE=/home/production/.pgpass
-ENV R_LIBS_USER=/home/production/cxgn/R_libs
-
 
 # create directory layout
 #
@@ -178,16 +168,25 @@ USER root
 
 # move this here so it is not clobbered by the cxgn move
 #
-COPY slurm.conf /etc/slurm/slurm.conf
-COPY starmachine.conf /etc/starmachine/
+COPY etc/slurm.conf /etc/slurm/slurm.conf
+COPY etc/starmachine.conf /etc/starmachine/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 
+ARG DOCKER_TAG
+ARG DOCKER_CREATED
+
+ENV CPANMIRROR=http://cpan.cpantesters.org
+ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8
+ENV PERL5LIB=/home/production/cxgn/Bio-Chado-Schema/lib:/home/production/cxgn/local-lib/:/home/production/cxgn/local-lib/lib/perl5:/home/production/cxgn/sgn/lib:/home/production/cxgn/cxgn-corelibs/lib:/home/production/cxgn/Phenome/lib:/home/production/cxgn/Cview/lib:/home/production/cxgn/ITAG/lib:/home/production/cxgn/biosource/lib:/home/production/cxgn/tomato_genome/lib:/home/production/cxgn/chado_tools/chado/lib:.
+ENV HOME=/home/production
+ENV PGPASSFILE=/home/production/.pgpass
+ENV R_LIBS_USER=/home/production/cxgn/R_libs
+
 RUN locale-gen en_US.UTF-8
 RUN echo "R_LIBS_USER=/home/production/cxgn/R_libs" >> /etc/R/Renviron
 RUN ln -s /home/production/cxgn/starmachine/bin/starmachine_init.d /etc/init.d/sgn
-
 
 LABEL maintainer="djw64@cornell.edu"
 LABEL org.opencontainers.image.authors="Breedbase - https://github.com/solgenomics/sgn, The Triticeae Toolbox - https://github.com/TriticeaeToolbox/sgn"

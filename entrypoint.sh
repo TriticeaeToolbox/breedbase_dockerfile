@@ -32,6 +32,9 @@ mkdir -p "$export_prod"; chown -R www-data:www-data "$export_prod"
 mkdir -p "$tmp_run"; chown www-data:www-data "$tmp_run"
 chown production:production "/home/production/cxgn/sgn/js/package.json"
 
+# Fix Bio::Chado::Schema unfound in INC problem
+ln -s /home/production/cxgn/Bio-Chado-Schema/lib/Bio/Chado /home/production/cxgn/local-lib/lib/perl5/Bio/Chado
+
 # Set git version info in sgn repo
 /usr/local/bin/set_git_version_info
 
