@@ -116,8 +116,9 @@ RUN pip3 install grpcio==1.40.0 imutils numpy matplotlib pillow statistics PyExi
 COPY tools/gcta/gcta64  /usr/local/bin/
 COPY tools/quicktree /usr/local/bin/
 COPY tools/sreformat /usr/local/bin/
+COPY tools/fix_file_permissions /usr/local/bin/
+COPY tools/set_git_info /usr/local/bin/
 COPY tools/DiGGer_1.0.5_R_x86_64-redhat-linux-gnu.tar.gz /home/production/DiGGer.tar.gz
-COPY tools/set_git_version_info /usr/local/bin/
 
 # Install DiGGer from the source code
 # 
@@ -161,7 +162,7 @@ RUN git clone --depth 1 -b triticum-arsks           https://github.com/Triticeae
 RUN git clone --depth 1 -b avena                    https://github.com/TriticeaeToolbox/mason.git           ./avena
 RUN git clone --depth 1 -b avena-sandbox            https://github.com/TriticeaeToolbox/mason.git           ./avena_sandbox
 RUN git clone --depth 1 -b avena-private            https://github.com/TriticeaeToolbox/mason.git           ./avena_private
-RUN git clone --depth 1 -b hordeum                  https://github.com/TriticeaeToolbox/mason.git           ./hodeum
+RUN git clone --depth 1 -b hordeum                  https://github.com/TriticeaeToolbox/mason.git           ./hordeum
 RUN git clone --depth 1 -b hordeum-sandbox          https://github.com/TriticeaeToolbox/mason.git           ./hordeum_sandbox
 RUN git clone --depth 1                             https://github.com/TriticeaeToolbox/kelp.git            ./kelp
 USER root

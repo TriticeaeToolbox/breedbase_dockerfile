@@ -12,31 +12,13 @@ if [ "${MODE}" = 'TESTING' ]; then
 fi
 
 # Fix file permissions
-echo "fixing file permissions..."
-tmp=$(cat "/home/production/cxgn/sgn/sgn_local.conf" | grep ^tempfiles_base | tr -s ' ' | xargs | cut -d ' ' -f 2)
-archive=$(cat "/home/production/cxgn/sgn/sgn_local.conf" | grep ^archive_path | tr -s ' ' | xargs | cut -d ' ' -f 2)
-submissions=$(cat "/home/production/cxgn/sgn/sgn_local.conf" | grep ^submission_path | tr -s ' ' | xargs | cut -d ' ' -f 2)
-static_content=$(cat "/home/production/cxgn/sgn/sgn_local.conf" | grep ^static_content_path | tr -s ' ' | xargs | cut -d ' ' -f 2)
-export="/home/production/export"
-export_prod="/home/production/export/prod"
-tmp_run="/tmp/cxgn_tools_run"
+/usr/local/bin/fix_file_permissions
 
-mkdir -p "$tmp"
-chown www-data:www-data "$tmp/../"
-mkdir -p "$tmp/mason/obj"; chown -R www-data:www-data "$tmp/mason"
-chown -R www-data:www-data "$archive"
-chown -R www-data:www-data "$submissions"
-mkdir -p "$static_content/folder"; chown -R www-data:www-data "$static_content/folder"
-mkdir -p "$export"; chown -R www-data:www-data "$export"; ln -snf "$export" /export
-mkdir -p "$export_prod"; chown -R www-data:www-data "$export_prod"
-mkdir -p "$tmp_run"; chown www-data:www-data "$tmp_run"
-chown production:production "/home/production/cxgn/sgn/js/package.json"
+# Set Git Info
+/usr/local/bin/set_git_info
 
 # Fix Bio::Chado::Schema unfound in INC problem
 ln -s /home/production/cxgn/Bio-Chado-Schema/lib/Bio/Chado /home/production/cxgn/local-lib/lib/perl5/Bio/Chado
-
-# Set git version info in sgn repo
-/usr/local/bin/set_git_version_info
 
 if [ "$MODE" == "DEVELOPMENT" ]; then
     /home/production/cxgn/sgn/bin/sgn_server.pl --fork -r -d -p 8080

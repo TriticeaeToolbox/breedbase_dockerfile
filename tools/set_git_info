@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+# Set SGN git repo env vars
+echo "setting git info..."
 git config --global --add safe.directory /home/production/cxgn/sgn
 git -C /home/production/cxgn/sgn describe --abbrev=0 --tags > /home/production/tmp/git_tag
 git -C /home/production/cxgn/sgn rev-parse --short HEAD > /home/production/tmp/git_commit
