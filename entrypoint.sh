@@ -1,11 +1,11 @@
 #!/bin/bash
 sed -i s/localhost/$HOSTNAME/g /etc/slurm/slurm.conf
+/etc/init.d/nginx start
 /etc/init.d/postfix start
 /etc/init.d/cron start
 /etc/init.d/munge start
 /etc/init.d/slurmctld start
 /etc/init.d/slurmd start
-#/etc/init.d/postgres start
 
 if [ "${MODE}" = 'TESTING' ]; then
     exec perl t/test_fixture.pl --carpalways -v "${@}"

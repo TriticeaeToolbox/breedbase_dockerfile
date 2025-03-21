@@ -171,6 +171,7 @@ USER root
 #
 COPY etc/slurm.conf /etc/slurm/slurm.conf
 COPY etc/starmachine.conf /etc/starmachine/
+COPY etc/nginx.conf /etc/nginx/sites-available/default
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
@@ -205,5 +206,5 @@ LABEL org.opencontainers.image.documentation="https://solgenomics.github.io/sgn/
 
 # start services when running container...
 WORKDIR /home/production/cxgn/sgn
-EXPOSE 8080
+EXPOSE 80 8080
 ENTRYPOINT ["/entrypoint.sh"]
