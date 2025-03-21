@@ -34,7 +34,7 @@ RUN apt-get update -y --allow-unauthenticated && \
                        lsof imagemagick mrbayes muscle bowtie bowtie2 postfix mailutils \
                        libcupsimage2 libglib2.0-dev libglib2.0-bin screen \
                        apt-transport-https libgdal-dev libproj-dev libudunits2-dev locales \
-                       locales-all rsyslog cron libnlopt0 
+                       locales-all rsyslog cron anacron libnlopt0
 
 # Slurm setup
 #
@@ -174,6 +174,8 @@ COPY etc/starmachine.conf /etc/starmachine/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# Set clear_old_temp_files script to run daily
+RUN ln -s /home/production/cxgn/sgn/bin/clear_old_temp_files.sh /etc/cron.daily/clear_sgn_temp
 
 ARG DOCKER_TAG
 ARG DOCKER_CREATED
