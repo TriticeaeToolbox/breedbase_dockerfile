@@ -50,7 +50,7 @@ RUN usermod -a -G postdrop www-data
 
 # Add cran repo
 #
-RUN echo "deb http://lib.stat.cmu.edu/R/CRAN/bin/linux/debian bullseye-cran40/" >> /etc/apt/sources.list
+RUN echo "deb https://cloud.r-project.org/bin/linux/debian/ bullseye-cran40/" >> /etc/apt/sources.list
 RUN bash -c "apt-key adv --keyserver keyserver.ubuntu.com --recv-key '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7' 1>/key.out 2> /key.err"
 
 # Add postgresql repo
