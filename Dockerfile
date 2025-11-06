@@ -178,6 +178,9 @@ RUN chmod +x /entrypoint.sh
 # Set clear_old_temp_files script to run daily
 RUN ln -s /home/production/cxgn/sgn/bin/clear_old_temp_files.sh /etc/cron.daily/clear_sgn_temp
 
+# Add /home/production/volume directory, which is expected by some caches and the CXGN::Jobs log
+RUN mkdir -p /home/production/volume && chown www-data:www-data /home/production/volume
+
 ARG DOCKER_TAG
 ARG DOCKER_CREATED
 
