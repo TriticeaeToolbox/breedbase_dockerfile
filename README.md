@@ -1,3 +1,9 @@
+> [!CAUTION]
+> **This repository is no longer used to build and deploy the triticeaetoolbox/breedbase_web Docker images**
+>
+> The images are now automatically built and deployed using a GitHub action in the TriticeaeToolbox/sgn repo.
+> The Dockerfile (and associated build files) are now located in the `/docker/` directory of the sgn repo.
+
 # T3/Breedbase Docker Image
 
 <p float="left">
